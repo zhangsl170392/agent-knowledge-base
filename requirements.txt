@@ -1,0 +1,16 @@
+# --- LangChain 核心生态 ---
+langchain-core==1.6.1
+langchain-community==0.3.31
+langchain-text-splitters==1.1.2
+
+# --- 向量数据库与检索 ---
+langchain-chroma==1.1.0
+chromadb==1.5.9
+
+# --- 本地 Embedding 模型 (Ollama) ---
+langchain-ollama==1.1.0
+
+# --- 配置与环境变量管理 ---
+pydantic-settings==2.15.0
+python-dotenv==1.2.2
+

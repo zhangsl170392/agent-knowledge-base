@@ -1,0 +1,1 @@
+invalid type: string "8.2 数据量限制\n单次查询默认page_size ≤ 100\n\n单次创建/更新批量 ≤ 500条\n\n请求体大小 ≤ 10MB\n\n8.3 压缩支持\n支持gzip压缩响应\n\nClient携带Accept-Encoding: gzip\n\n9. 变更与兼容性\n9.1 向后兼容规则\n新增字段：兼容\n\n删除字段：不兼容，需升级版本\n\n修改字段类型：不兼容，需升级版本\n 

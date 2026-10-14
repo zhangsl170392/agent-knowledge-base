@@ -1,0 +1,40 @@
+{"id":"api-001","question":"URL 命名中多个单词之间应该使用什么连接符？","answer":"应使用短横线（-）连接，禁止使用下划线或驼峰。正确示例：/user-profiles；错误示例：/userProfiles、/user_profiles。","category":"URL设计","source":"2.2 命名规则","difficulty":"easy"}
+{"id":"api-002","question":"RESTful API 中资源集合应使用什么命名形式？","answer":"应使用名词复数形式表示资源集合。正确示例：/users、/orders、/products；错误示例：/getUser、/user、/addOrder。","category":"URL设计","source":"2.3 资源命名","difficulty":"easy"}
+{"id":"api-003","question":"API 版本号应该放在 URL 的什么位置，格式是什么？","answer":"版本号放在 URL 路径第一段，格式为 v1、v2、v3。示例：/v1/users、/v2/orders。","category":"版本管理","source":"2.4 版本管理","difficulty":"easy"}
+{"id":"api-004","question":"API 新增字段、删除字段、修改字段类型时，版本号应如何变化？","answer":"新增字段不改变版本号；删除或重命名字段需升级大版本；修改字段类型需升级大版本。","category":"版本管理","source":"2.4 版本管理、9.1 向后兼容规则","difficulty":"medium"}
+{"id":"api-005","question":"API URL 的资源嵌套深度有什么限制？","answer":"资源嵌套深度不超过 3 层。正确：/v1/users/123/orders；可接受：/v1/users/123/orders/456/items；错误：/v1/users/123/orders/456/items/789/details。","category":"URL设计","source":"2.5 层级深度","difficulty":"medium"}
+{"id":"api-006","question":"API 的过滤、排序、分页应通过什么方式实现？","answer":"使用 query 参数实现，不改变 URL 路径结构。分页示例：/v1/users?page=1&page_size=20；过滤示例：/v1/users?status=active&role=admin；排序示例：/v1/users?sort=-created_at,asc。","category":"URL设计","source":"2.6 过滤、排序、分页","difficulty":"easy"}
+{"id":"api-007","question":"如何让 API 只返回指定字段？","answer":"使用 query 参数 fields，例如 /v1/users?fields=id,name,email。","category":"URL设计","source":"2.6 过滤、排序、分页","difficulty":"easy"}
+{"id":"api-008","question":"GET、POST、PUT、PATCH、DELETE 中哪些方法是幂等的？","answer":"GET、PUT、DELETE 是幂等的；POST、PATCH 不是幂等的。","category":"HTTP方法","source":"3.1 方法定义","difficulty":"medium"}
+{"id":"api-009","question":"GET 请求是否应该修改服务端状态？参数应放在哪里？","answer":"GET 请求不应修改服务端状态，参数放在 URL 或 Header 中。","category":"HTTP方法","source":"3.2 方法使用细则","difficulty":"easy"}
+{"id":"api-010","question":"POST 请求创建资源时，资源 ID 由谁生成？","answer":"POST 请求用于创建资源，服务端生成资源 ID。","category":"HTTP方法","source":"3.2 方法使用细则","difficulty":"easy"}
+{"id":"api-011","question":"PUT 和 PATCH 在更新资源时有什么区别？","answer":"PUT 是完整更新，必须提供完整资源对象，缺失字段会被重置为默认值；PATCH 是部分更新，只提供需要修改的字段。","category":"HTTP方法","source":"3.2 方法使用细则","difficulty":"medium"}
+{"id":"api-012","question":"DELETE 请求成功通常返回什么状态码？","answer":"DELETE 请求通常返回 204 No Content。","category":"HTTP状态码","source":"3.2 方法使用细则、6.1 2xx 成功","difficulty":"easy"}
+{"id":"api-013","question":"批量删除应使用什么 HTTP 方法和路径？","answer":"批量删除使用 POST 加特殊路径，不使用批量 DELETE。示例：POST /v1/users/batch/delete，Body 为 user_ids 数组，例如 [1,2,3]，属于软删除。","category":"批量操作","source":"3.3 批量操作","difficulty":"medium"}
+{"id":"api-014","question":"API 请求头中哪些是必填的？Authorization 的格式是什么？","answer":"Content-Type、Accept、Authorization 是必填的。Authorization 格式为 Bearer {token}，例如 Bearer eyJhbGci...。","category":"请求规范","source":"4.1 请求头","difficulty":"medium"}
+{"id":"api-015","question":"GET/DELETE 与 POST/PUT/PATCH 的参数传递规则有什么不同？","answer":"GET/DELETE 参数放在 URL query 或路径变量中；POST/PUT/PATCH 复杂参数放在 JSON Body 中；文件上传使用 multipart/form-data 格式。","category":"请求规范","source":"4.2 参数传递规则","difficulty":"medium"}
+{"id":"api-016","question":"API 的日期时间统一使用什么格式？请给出示例。","answer":"统一使用 ISO 8601 格式。示例：2024-01-15T14:30:00Z（UTC 时间）；2024-01-15T22:30:00+08:00（带时区）。","category":"请求规范","source":"4.3 日期时间格式","difficulty":"easy"}
+{"id":"api-017","question":"API 中的枚举值应使用字符串还是数字？","answer":"使用字符串表示，禁止使用数字。正确：status 为 active；错误：status 为 1。","category":"请求规范","source":"4.4 枚举值规范","difficulty":"easy"}
+{"id":"api-018","question":"所有 API 响应统一包含哪些字段？","answer":"统一 JSON 结构包含 code、message、data、timestamp、request_id。","category":"响应规范","source":"5.1 统一响应结构","difficulty":"easy"}
+{"id":"api-019","question":"分页列表接口的响应中 pagination 包含哪些字段？","answer":"data.pagination 包含 page、page_size、total、total_pages；列表数据在 data.items。","category":"响应规范","source":"5.2 分页响应结构","difficulty":"medium"}
+{"id":"api-020","question":"错误响应结构中的 errors 字段包含什么？","answer":"errors 是数组，每个元素包含 field 和 message，例如 field 为 email、message 为 邮箱格式不正确。错误响应还包含 code、message、timestamp、request_id。","category":"响应规范","source":"5.3 错误响应结构","difficulty":"medium"}
+{"id":"api-021","question":"POST 创建成功和 DELETE 成功分别返回什么状态码？","answer":"POST 创建成功返回 201 Created，并返回新资源 ID；DELETE 成功通常返回 204 No Content。","category":"HTTP状态码","source":"6.1 2xx 成功","difficulty":"easy"}
+{"id":"api-022","question":"401、403、404、409、429 分别代表什么？","answer":"401 未认证或 token 过期；403 已认证但无权限；404 资源不存在；409 资源冲突，如重复创建；429 触发限流。","category":"HTTP状态码","source":"6.2 4xx 客户端错误","difficulty":"medium"}
+{"id":"api-023","question":"500、502、503、504 分别代表什么？","answer":"500 服务器内部错误；502 网关错误；503 服务不可用，如维护中；504 网关超时。","category":"HTTP状态码","source":"6.3 5xx 服务端错误","difficulty":"medium"}
+{"id":"api-024","question":"推荐使用什么认证方式？access_token 和 refresh_token 有效期分别是多久？","answer":"推荐使用 JWT。Header 格式为 Authorization: Bearer {token}。access_token 有效期 2 小时，refresh_token 有效期 7 天。","category":"安全规范","source":"7.1 认证方式","difficulty":"medium"}
+{"id":"api-025","question":"敏感信息在 URL 和响应中应如何处理？","answer":"禁止在 URL 中传递密码、token、密钥；响应中不返回密码、身份证号等敏感字段；信用卡号等脱敏显示，例如 ****1234。","category":"安全规范","source":"7.2 敏感信息保护","difficulty":"medium"}
+{"id":"api-026","question":"API 默认限流策略是什么？超出后返回什么？","answer":"按 API Key 或用户 ID 限流，默认 1000 次/分钟。超出返回 429 状态码，Header 携带 X-RateLimit-Limit、X-RateLimit-Remaining、X-RateLimit-Reset。","category":"安全规范","source":"7.3 限流策略","difficulty":"medium"}
+{"id":"api-027","question":"POST 创建接口如何保障幂等性？","answer":"支持幂等键 Idempotency-Key，Header 值为 UUID。服务端缓存幂等键 24 小时，相同 key 返回首次结果。","category":"安全规范","source":"7.4 幂等性保障","difficulty":"medium"}
+{"id":"api-028","question":"API 响应时间、批量条数和请求体大小有哪些限制？","answer":"P99 响应时间小于 500ms；慢查询大于 1s 需要优化或异步处理；单次查询默认 page_size ≤ 100；单次创建/更新批量 ≤ 500 条；请求体大小 ≤ 10MB。","category":"性能规范","source":"8.1 响应时间要求、8.2 数据量限制","difficulty":"medium"}
+{"id":"api-029","question":"API 如何支持响应压缩？","answer":"支持 gzip 压缩响应，Client 携带 Accept-Encoding: gzip。","category":"性能规范","source":"8.3 压缩支持","difficulty":"easy"}
+{"id":"api-030","question":"哪些 API 变更属于不兼容变更，需要升级版本？","answer":"删除字段、修改字段类型、修改字段含义、修改错误码含义属于不兼容变更，需要升级版本；新增字段兼容。","category":"变更与兼容性","source":"9.1 向后兼容规则","difficulty":"medium"}
+{"id":"api-031","question":"接口废弃应提前多久通知？响应 Header 如何标识？","answer":"接口废弃提前 3 个月通知；响应 Header 标识 X-API-Deprecated: true；废弃时间通过 X-API-Deprecated-At 携带，例如 2024-12-31。","category":"变更与兼容性","source":"9.2 废弃机制","difficulty":"medium"}
+{"id":"api-032","question":"API 文档推荐使用什么规范？必需包含哪些内容？","answer":"推荐使用 OpenAPI 3.0 规范，即 Swagger，提供在线可调试文档。必需内容：接口路径和 HTTP 方法、请求参数说明、响应示例、错误码说明、认证方式说明。","category":"文档规范","source":"10.1 必需内容、10.2 文档格式","difficulty":"medium"}
+{"id":"api-033","question":"文档中字符串、数字、ID、UUID、时间的示例值规范是什么？","answer":"字符串示例为 string；数字示例为 0 或 100；ID 示例为 123；UUID 示例为 123e4567-e89b-12d3-a456-426614174000；时间示例为 2024-01-15T14:30:00Z。","category":"文档规范","source":"10.3 示例值规范","difficulty":"medium"}
+{"id":"api-034","question":"API 接口设计的核心原则是什么？","answer":"简单明了、一致性、无状态、可预测。","category":"概述","source":"1.3 核心原则","difficulty":"easy"}
+{"id":"api-035","question":"该 API 接口设计规范适用于哪些接口？","answer":"适用于所有 RESTful 风格的公开 API 接口设计，包括内部系统和对外服务。","category":"概述","source":"1.2 适用范围","difficulty":"easy"}
+{"id":"api-036","question":"API URL 的基础格式是什么？","answer":"https://api.example.com/{version}/{resource}/{id}/{sub-resource}。","category":"URL设计","source":"2.1 基础格式","difficulty":"easy"}
+{"id":"api-037","question":"排序参数 sort 的示例是什么？","answer":"示例：/v1/users?sort=-created_at,asc。","category":"URL设计","source":"2.6 过滤、排序、分页","difficulty":"easy"}
+{"id":"api-038","question":"过滤、分页、排序如何组合使用？","answer":"示例：/v1/users?status=active&page=2&sort=-created_at。","category":"URL设计","source":"2.6 过滤、排序、分页","difficulty":"easy"}
+{"id":"api-039","question":"HTTP 方法中哪些是安全的？","answer":"GET 是安全的；POST、PUT、PATCH、DELETE 不是安全的。","category":"HTTP方法","source":"3.1 方法定义","difficulty":"medium"}
+{"id":"api-040","question":"API 请求体大小限制是多少？","answer":"请求体大小 ≤ 10MB。","category":"性能规范","source":"8.2 数据量限制","difficulty":"easy"}
