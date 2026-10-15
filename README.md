@@ -43,7 +43,7 @@ flowchart LR
 ### 安装
 
 ```bash
-git clone https://github.com/yourname/agent-knowledge-base.git
+git clone https://github.com/zhangsl170392/agent-knowledge-base.git
 cd agent-knowledge-base
 pip install -r requirements.txt
 ```
